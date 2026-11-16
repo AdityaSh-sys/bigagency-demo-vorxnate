@@ -1,47 +1,26 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Rocket, ChevronRight } from 'lucide-react';
+import React, { useState } from 'react';
 
-const navLinks = [
-  { name: 'Services', href: '#services' },
-  { name: 'Philosophy', href: '#about' },
-  { name: 'Project', href: '#contact' },
-];
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-export default function Navbar() {
   return (
-    <motion.nav 
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center p-6"
-    >
-      <div className="glass-morphism rounded-full px-6 py-3 flex items-center gap-8 md:gap-12">
-        <div className="flex items-center gap-2">
-          <Rocket className="w-5 h-5 text-orange-500" />
-          <span className="font-bold tracking-tighter text-lg">VORXNATE</span>
+    <nav className="fixed w-full z-50 bg-vorx/80 backdrop-blur-md border-b border-white/10">
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="text-2xl font-extrabold tracking-tighter italic">
+          VOR<span className="text-purple-500">X</span>NATE
         </div>
-        
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name}
-              href={link.href}
-              className="text-sm font-medium text-zinc-400 hover:text-orange-500 transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
+        <div className="hidden md:flex space-x-10 font-semibold tracking-wide">
+          <a href="#" className="hover:text-purple-400 transition">Strategy</a>
+          <a href="#" className="hover:text-purple-400 transition">Creative</a>
+          <a href="#" className="hover:text-purple-400 transition">Case Studies</a>
+          <a href="#" className="hover:text-purple-400 transition">Contact</a>
         </div>
-
-        <motion.a 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          href="#contact"
-          className="bg-orange-500 text-white text-xs font-bold px-5 py-2 rounded-full flex items-center gap-2 hover:bg-orange-600 transition-colors"
-        >
-          CONNECT <ChevronRight className="w-3 h-3" />
-        </motion.a>
+        <button className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-full font-bold shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition">
+          Work with us
+        </button>
       </div>
-    </motion.nav>
+    </nav>
   );
-}
+};
+
+export default Navbar;
